@@ -1,30 +1,34 @@
 from django.contrib.auth.tokens import default_token_generator
-from django_filters.rest_framework import DjangoFilterBackend
 from django.dispatch import Signal
+
+from django_filters.rest_framework import DjangoFilterBackend
+
+
 from rest_framework import filters, mixins, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.generics import CreateAPIView, get_object_or_404
-from rest_framework.permissions import AllowAny
 from rest_framework.pagination import PageNumberPagination
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
+from rest_framework_simplejwt.tokens import RefreshToken
 
-from reviews.models import User, Category, Genre, Title, Review, Comment
+from reviews.models import Category, Comment, Genre, Review, Title, User
+
 from .filters import TitleFilter
-from .permissions import (AdminOrReadOnly,
-                          AuthorOrModeratorOrAdminOrReadOnly,
+from .permissions import (AdminOrAuthUser,
+                          AdminOrReadOnly,
                           AdminOrSuperUser,
-                          AdminOrAuthUser)
-from .serializers import (UserCreateCustomSerializer,
-                          CategorySerializer,
+                          AuthorOrModeratorOrAdminOrReadOnly)
+from .serializers import (CategorySerializer,
+                          CommentSerializer,
+                          CustomUsernamedAndTokenSerializer,
                           GenreSerializer,
+                          ReviewSerializer,
                           TitleListSerializer,
                           TitleOtherSerializer,
-                          ReviewSerializer,
-                          CommentSerializer,
-                          UserSerializers,
-                          CustomUsernamedAndTokenSerializer)
+                          UserCreateCustomSerializer,
+                          UserSerializers)
 
 
 # New user has registered. Args: user, request.
