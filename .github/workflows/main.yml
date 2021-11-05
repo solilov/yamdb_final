@@ -7,22 +7,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # для клонирования репозитория применён предустановленный action
     - uses: actions/checkout@v2
-    - name: Set up Python 
+    - name: Set up Python
+      # для установки Python-окружения
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
 
     - name: Install dependencies
-      run: | 
-                # обновление pip
-        python -m pip install --upgrade pip 
-                # установка flake8 и его плагинов
+      run: |
+        # обновление pip
+        python -m pip install --upgrade pip
+        # установка flake8 и его плагинов
         pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
         # установка зависимостей
-          pip install -r requirements.txt 
-
+        pip install -r requirements.txt
     - name: Test with flake8 and django tests
       run: |
-                # запуск проверки проекта по flake8
+        # запуск проверки проекта по flake8
         python -m flake8
