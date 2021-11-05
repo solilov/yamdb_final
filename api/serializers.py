@@ -24,10 +24,10 @@ class UserCreateCustomSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         try:
-            user = self.perform_create(validated_data)
+            return self.perform_create(validated_data)
         except IntegrityError:
             self.fail("cannot_create_user")
-        return user
+        # return user
 
     def perform_create(self, validated_data):
         with transaction.atomic():
@@ -62,14 +62,14 @@ class CustomUsernamedAndTokenSerializer(serializers.Serializer):
     confirmation_code = serializers.CharField()
 
     def validate(self, attrs):
-        validated_data = super().validate(attrs)
+        # validated_data = super().validate(attrs)
         username = self.initial_data.get("username", "")
         self.user = get_object_or_404(User, username=username)
         is_token_valid = self.context["view"].token_generator.check_token(
             self.user, self.initial_data.get("confirmation_code", "")
         )
         if is_token_valid:
-            return validated_data
+            return super().validate(attrs)
         else:
             raise ValidationError(
                 "invalid_confirmation_code"
@@ -143,8 +143,7 @@ class ReviewSerializer(serializers.ModelSerializer):
             raise ValidationError(
                 'Невозможно заново написать отзыв'
             )
-        review = Review.objects.create(**validated_data)
-        return review
+        return Review.objects.create(**validated_data)
 
 
 class CommentSerializer(serializers.ModelSerializer):
