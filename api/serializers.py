@@ -27,7 +27,6 @@ class UserCreateCustomSerializer(serializers.ModelSerializer):
             return self.perform_create(validated_data)
         except IntegrityError:
             self.fail("cannot_create_user")
-        # return user
 
     def perform_create(self, validated_data):
         with transaction.atomic():
@@ -62,7 +61,6 @@ class CustomUsernamedAndTokenSerializer(serializers.Serializer):
     confirmation_code = serializers.CharField()
 
     def validate(self, attrs):
-        # validated_data = super().validate(attrs)
         username = self.initial_data.get("username", "")
         self.user = get_object_or_404(User, username=username)
         is_token_valid = self.context["view"].token_generator.check_token(
