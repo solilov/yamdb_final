@@ -10,8 +10,8 @@ services:
   web:
     image: alexkastorka/yamdb_final
     restart: always
-    ports:
-      - "8000:8000" 
+    # ports:
+    #   - "8000:8000" 
     volumes:
       # Контейнер web будет работать с данными, хранящиеся в томе static_value, 
       # через свою директорию /code/static/
