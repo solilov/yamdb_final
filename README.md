@@ -129,8 +129,8 @@ TELEGRAM_TOKEN
  docker-compose exec web python manage.py loaddata fixtures.json
 ```
 
-- Документация к проекту доступна по адресу http://255.255.255.255/redoc/
-
+- Документация к проекту доступна по адресу http://178.154.252.235/redoc/
+- Приложение доступно по адресу http://178.154.252.235
 
 ### <a name="Автор">Автор</a>
 
