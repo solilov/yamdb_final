@@ -80,6 +80,10 @@ source venv/bin/activate
 ```
 python3 -m pip install --upgrade pip
 ```
+- Локальный запуск автотестов
+```
+pytest
+```
 
 - Скопировать подготовленные файлы docker-compose.yaml и nginx/default.conf из вашего проекта на сервер
 ```
@@ -125,7 +129,7 @@ TELEGRAM_TOKEN
  docker-compose exec web python manage.py loaddata fixtures.json
 ```
 
-- Документация к проекту доступна по адресу http://127.0.0.1/redoc/
+- Документация к проекту доступна по адресу http://255.255.255.255/redoc/
 
 
 ### <a name="Автор">Автор</a>
