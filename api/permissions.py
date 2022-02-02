@@ -2,7 +2,9 @@ from rest_framework import permissions
 
 
 class AuthorOrModeratorOrAdminOrReadOnly(permissions.BasePermission):
-    """ Создаем и настраиваем пермишены для сериализаторов """
+    """
+    Создаем и настраиваем пермишены для сериализаторов.
+    """
 
     def has_permission(self, request, view):
         return (request.method in permissions.SAFE_METHODS
@@ -16,7 +18,9 @@ class AuthorOrModeratorOrAdminOrReadOnly(permissions.BasePermission):
 
 
 class AdminOrReadOnly(permissions.BasePermission):
-    """ Создаем и настраиваем пермишены для сериализаторов """
+    """
+    Создаем и настраиваем пермишены для сериализаторов.
+    """
 
     def has_permission(self, request, view):
         return (request.method in permissions.SAFE_METHODS
@@ -28,7 +32,9 @@ class AdminOrReadOnly(permissions.BasePermission):
 
 
 class AdminOrSuperUser(permissions.BasePermission):
-    """ Создаем и настраиваем пермишены для сериализаторов """
+    """
+    Создаем и настраиваем пермишены для сериализаторов.
+    """
 
     def has_permission(self, request, view):
         user = request.user
@@ -46,7 +52,9 @@ class AdminOrSuperUser(permissions.BasePermission):
 
 
 class AdminOrSuperUserOrModerator(permissions.BasePermission):
-    """ Создаем и настраиваем пермишены для сериализаторов """
+    """
+    Создаем и настраиваем пермишены для сериализаторов.
+    """
 
     def has_permission(self, request, view):
         user = request.user
@@ -66,7 +74,9 @@ class AdminOrSuperUserOrModerator(permissions.BasePermission):
 
 
 class AdminOrAuthUser(permissions.BasePermission):
-    """ Создаем и настраиваем пермишены для сериализаторов """
+    """
+    Создаем и настраиваем пермишены для сериализаторов.
+    """
 
     def has_object_permission(self, request, view, obj):
         user = request.user

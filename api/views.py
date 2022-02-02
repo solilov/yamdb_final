@@ -20,16 +20,15 @@ from .serializers import (CategorySerializer, CommentSerializer,
                           TitleOtherSerializer, UserCreateCustomSerializer,
                           UserSerializers)
 
-# New user has registered. Args: user, request.
 user_registered = Signal()
 
-# User has activated his or her account. Args: user, request.
 user_activated = Signal()
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    """ Создаем вьюсет для вывода пользователей и
-        настраиваем его."""
+    """
+    Создаем вьюсет для вывода пользователей и настраиваем его.
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializers
     permission_classes = (AdminOrSuperUser,)
@@ -91,8 +90,9 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class CreateUser(CreateAPIView):
-    """ Создаем вьюсет для регистрации пользователей и
-           настраиваем его."""
+    """
+    Создаем вьюсет для регистрации пользователей и настраиваем его.
+    """
 
     queryset = User.objects.all()
     serializer_class = UserCreateCustomSerializer
@@ -109,7 +109,9 @@ class CreateUser(CreateAPIView):
 
 
 class ActivateToken(CreateAPIView):
-    """ Создаем вью для вывода получения токена. """
+    """
+    Создаем вью для вывода получения токена.
+    """
     serializer_class = CustomUsernamedAndTokenSerializer
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
@@ -148,12 +150,12 @@ class CreateListDestroyViewSet(mixins.CreateModelMixin,
 
 class CategoryViewSet(CreateListDestroyViewSet):
     """
-    Вьюесет модели Category
+    Вьюесет модели Category.
     CategoryViewSet реализует операции:
-        <POST> - добавление новой категории, достпуно только Администратору
-        <GET> - получение списка категорий, доступно без токена
-        <DELETE> - удаление категории, доступно только Администратору
-    Есть поиск по полю 'name'
+        <POST> - добавление новой категории, достпуно только Администратору.
+        <GET> - получение списка категорий, доступно без токена.
+        <DELETE> - удаление категории, доступно только Администратору.
+    Есть поиск по полю 'name'.
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -172,12 +174,12 @@ class CategoryViewSet(CreateListDestroyViewSet):
 
 class GenreViewSet(CreateListDestroyViewSet):
     """
-    Вьюесет модели Genre
+    Вьюесет модели Genre.
     GenreViewSet реализует операции:
-        <POST> - добавление новой категории, достпуно только Администратору
-        <GET> - получение списка категорий, доступно без токена
-        <DELETE> - удаление категории, доступно только Администратору
-    Есть поиск по полю 'name'
+        <POST> - добавление новой категории, достпуно только Администратору.
+        <GET> - получение списка категорий, доступно без токена.
+        <DELETE> - удаление категории, доступно только Администратору.
+    Есть поиск по полю 'name'.
     """
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
@@ -196,13 +198,13 @@ class GenreViewSet(CreateListDestroyViewSet):
 
 class TitleViewSet(viewsets.ModelViewSet):
     """
-    Вьюсет модели Title
+    Вьюсет модели Title.
     GenreViewSet реализует операции:
-        <POST> - добавление нового тайтла, достпуно только Администратору
-        <GET> - получение списка тайтлов, доступно без токена
+        <POST> - добавление нового тайтла, достпуно только Администратору.
+        <GET> - получение списка тайтлов, доступно без токена.
         <GET + {title id}> - получение информации о тайтле, доступно без токена
-        <DELETE> - удаление категории, доступно только Администратору
-    Реализована фильтрация по полям: 'category', 'genre', 'name', 'year'
+        <DELETE> - удаление категории, доступно только Администратору.
+    Реализована фильтрация по полям: 'category', 'genre', 'name', 'year'.
     """
     queryset = Title.objects.all()
     pagination_class = PageNumberPagination
@@ -223,8 +225,9 @@ class TitleViewSet(viewsets.ModelViewSet):
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
-    """ Создаем вьюсет для вывода отзывов и
-           настраиваем его."""
+    """
+    Создаем вьюсет для вывода отзывов и настраиваем его.
+    """
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     permission_classes = (AuthorOrModeratorOrAdminOrReadOnly,)
@@ -242,8 +245,9 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
 
 class CommentViewSet(viewsets.ModelViewSet):
-    """ Создаем вьюсет для вывода комментариев и
-           настраиваем его."""
+    """
+    Создаем вьюсет для вывода комментариев и настраиваем его.
+    """
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = (AuthorOrModeratorOrAdminOrReadOnly,)
