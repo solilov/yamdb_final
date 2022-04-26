@@ -1,6 +1,3 @@
-### Workflow status
-![yamdb_final workflow](https://github.com/solilov/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
-
 ## CI/CD for the project API YAMDB
 
 ### <a name="Описание_проекта">Описание</a>
